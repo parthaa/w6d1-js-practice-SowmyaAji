@@ -172,7 +172,7 @@ let findMinIndex = function(numbers, start) {
   return minIndex;
 }
 
-let selectionSort = function(nums) {
+let selectionSortIterative = function(nums) {
   let ret = nums.slice(0);
 
   for(let i = 0; i < ret.length; i ++) {
@@ -184,4 +184,21 @@ let selectionSort = function(nums) {
   }
 
   return ret;
+}
+
+let selectionRecursive = function(nums, currentIndex = 0) {
+  if (currentIndex == nums.length) {
+    return nums;
+  }
+
+  let minIndex = findMinIndex(nums, currentIndex);
+  let tmp = nums[currentIndex];
+  nums[currentIndex] = nums[minIndex];
+  nums[minIndex] = tmp;
+
+  return selectionRecursive(nums, currentIndex + 1);
+}
+
+let selectionSort = function(nums) {
+  return selectionRecursive(nums, 0);
 }
