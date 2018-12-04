@@ -148,7 +148,7 @@ let findIndex = function(num, numbers) {
   return -1;
 }
 
-let selectionSort = function(nums) {
+let selectionSort1 = function(nums) {
   let arrayCopy = nums.slice(0);
   let ret = [];
   while(arrayCopy.length != 0) {
@@ -158,3 +158,30 @@ let selectionSort = function(nums) {
   }
   return ret;
 };
+
+let findMinIndex = function(numbers, start) {
+  let min = numbers[start];
+  let minIndex = start;
+
+  for(var i = start; i < numbers.length; i++) {
+    if (numbers[i] < min) {
+      min = numbers[i];
+      minIndex = i;
+    }
+  }
+  return minIndex;
+}
+
+let selectionSort = function(nums) {
+  let ret = nums.slice(0);
+
+  for(let i = 0; i < ret.length; i ++) {
+    let minIndex = findMinIndex(ret, i);
+    //swap
+    let tmp = ret[i];
+    ret[i] = ret[minIndex];
+    ret[minIndex] = tmp;
+  }
+
+  return ret;
+}
